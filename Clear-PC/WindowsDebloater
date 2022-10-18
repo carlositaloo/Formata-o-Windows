@@ -4,7 +4,7 @@
 #>
 
 #Esse script precisa ser executado como administrador para funcionar corretamente.
-$OutputEncoding = [Console]::OutputEncoding
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $ErrorActionPreference = 'SilentlyContinue'
 
 $Button = [System.Windows.MessageBoxButton]::OKCancel
