@@ -3,33 +3,27 @@
         version 1.1
 #>
 
-$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
-
-#This will self elevate the script so with a UAC prompt since this script needs to be run as an Administrator in order to function properly.
+#Esse script precisa ser executado como administrador para funcionar corretamente.
 
 $ErrorActionPreference = 'SilentlyContinue'
 
-$Button = [System.Windows.MessageBoxButton]::YesNoCancel
-$ErrorIco = [System.Windows.MessageBoxImage]::Error
-$Ask = 'Do you want to run this as an Administrator?
-
-        Select "Yes" to Run as an Administrator
-
-        Select "No" to not run this as an Administrator
-        
-        Select "Cancel" to stop the script.'
+$Button = [System.Windows.MessageBoxButton]::OKCancel
+$ErrorIco = [System.Windows.MessageBoxImage]::Information
+$Ask = "Deseja executar isso como administrador?
+        Click em 'OK' para continuar."
 
 If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')) {
-    $Prompt = [System.Windows.MessageBox]::Show($Ask, "Run as an Administrator or not?", $Button, $ErrorIco) 
+    $Prompt = [System.Windows.MessageBox]::Show($Ask, "Executar como administrador:", $Button, $ErrorIco) 
     Switch ($Prompt) {
-        #This will debloat Windows 10
-        Yes {
-            Write-Host "You didn't run this script as an Administrator. This script will self elevate to run as an Administrator and continue."
+        #Isso irá debloat o Windows 11
+        OK {
+            Write-Host "Você não executou este script como administrador. Este script se elevará automaticamente para ser executado como administrador e continuará."
             Start-Process PowerShell.exe -ArgumentList ("-NoProfile -ExecutionPolicy Bypass -File `"{0}`"" -f $PSCommandPath) -Verb RunAs
             Exit
         }
-        No {
-            Break
+        Cancel {
+            Write-Host "Voce cancelou!"
+            Exit
         }
     }
 }
