@@ -141,10 +141,10 @@ function desinstallApps {
 }
 
 $Button1.Add_Click( {
-        Write-Host "    Desistalação de aplicativos iniciada"
+        Write-Host "Desistalação de aplicativos iniciada"
         Write-Host " "
         desinstallApps
-        Write-Host "    Aplicativos desnecessarios desinstalados!"
+        Write-Host "Aplicativos desnecessarios desinstalados!"
     }
 )
 
