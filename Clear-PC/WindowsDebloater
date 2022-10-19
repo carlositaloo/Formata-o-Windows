@@ -3,6 +3,8 @@
         version 1.1
 #>
 
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
 #Esse script precisa ser executado como administrador para funcionar corretamente.
 
 $Button = [System.Windows.MessageBoxButton]::OKCancel
