@@ -139,7 +139,7 @@ $desinstallApps ='Get-AppxPackage | where-object {$_.name –notlike "*Store*"} 
 $Button1.Add_Click( {
         Write-Host "Desistalação de aplicativos iniciada"
         Write-Host " "
-        desinstallApps
+        $desinstallApps
         Write-Host "Aplicativos desnecessarios desinstalados!"
     }
 )
