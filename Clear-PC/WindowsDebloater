@@ -40,7 +40,7 @@ Write-Host "#                                                                   
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
 Write-Host "=                                                                    #"
-Write-Host "#            Limpar Cache do Computador após formatação.             ="
+Write-Host "#            Limpar Cache do Computador após formatação.             =" | Out-File -Encoding UTF8
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
 Write-Host "=                                                        By: iNooth  #"
