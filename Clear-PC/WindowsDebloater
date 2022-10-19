@@ -1,4 +1,4 @@
-$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8BOM'
 <# 
     iNooTh
         version 1.1
