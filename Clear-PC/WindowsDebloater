@@ -1,4 +1,4 @@
-chcp 860
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 <# 
     iNooTh
         version 1.1
