@@ -28,6 +28,7 @@ If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     }
 }
 
+$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 
 cls
 Write-Host " "
@@ -137,13 +138,15 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 #region Logic 
 
 $Button1.Add_Click( {
-        Write-Host "    Desistalação de aplicativos iniciada"
-        Write-Host " "
-	[regex]$WhitelistedApps = 'Store|Photos|WindowsCalculator|WindowsNotepad|WindowsNotepad|ScreenSketch|WindowsSoundRecorder|DesktopAppInstaller|WindowsCamera|Terminal|WebExperience|Nvidia|QuickAssist'
-	Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
-	Get-AppxPackage | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
-	Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online
-        Write-Host "    Aplicativos desnecessarios desinstalados!"
+        Write-Host "Desativando Hibernação"
+        powercfg.exe /hibernate off
+        Write-Host "Hibernação Desativada!`n`n"
+        Write-Host "Desistalação de aplicativos iniciada"
+        [regex]$WhitelistedApps = 'Store|Photos|WindowsCalculator|WindowsNotepad|Microsoft.Paint|ScreenSketch|WindowsSoundRecorder|DesktopAppInstaller|WindowsCamera|Terminal|WebExperience|Nvidia|QuickAssist'
+        Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
+        Get-AppxPackage | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
+        Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online
+        Write-Host "Aplicativos desnecessarios desinstalados!`n`n"
     }
 )
 
