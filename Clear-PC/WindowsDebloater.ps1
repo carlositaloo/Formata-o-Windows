@@ -142,7 +142,7 @@ $Button1.Add_Click( {
         powercfg.exe /hibernate off
         Write-Host "Hibernação Desativada!`n`n"
         Write-Host "Desistalação de aplicativos iniciada"
-        [regex]$WhitelistedApps = 'Store|Photos|WindowsCalculator|WindowsNotepad|Microsoft.Paint|ScreenSketch|WindowsSoundRecorder|DesktopAppInstaller|WindowsCamera|Terminal|WebExperience|Nvidia|QuickAssist'
+        [regex]$WhitelistedApps = 'Microsoft.WindowsStore|Microsoft.Windows.Photos|Microsoft.WindowsCalculator|Microsoft.WindowsNotepad|Microsoft.Paint|Microsoft.ScreenSketch|Microsoft.WindowsSoundRecorder|Microsoft.DesktopAppInstaller|Microsoft.WindowsCamera|Microsoft.WindowsTerminal|MicrosoftWindows.Client.WebExperience|NVIDIACorp.NVIDIAControlPanel|MicrosoftCorporationII.QuickAssist'
         Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
         Get-AppxPackage | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
         Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online
