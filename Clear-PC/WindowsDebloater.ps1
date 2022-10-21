@@ -139,7 +139,10 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 $Button1.Add_Click( {
         Write-Host "    Desistalação de aplicativos iniciada"
         Write-Host " "
-        Get-AppxPackage | where-object {$_.name –notlike "*Store*"} | where-object {$_.name –notlike "*WindowsNotepad*"} | where-object {$_.name –notlike "*Microsoft.Paint*"} | where-object {$_.name –notlike "*ScreenSketch*"}  | where-object {$_.name –notlike "*WindowsSoundRecorder*"}  | where-object {$_.name –notlike "*WindowsCalculator*"}  | where-object {$_.name –notlike "*Photos*"} | where-object {$_.name –notlike "*DesktopAppInstaller*"} | where-object {$_.name –notlike "*WindowsCamera*"} | where-object {$_.name –notlike "*Terminal*"} | where-object {$_.name –notlike "*WebExperience*"} | where-object {$_.name –notlike "*Nvidia*"} | where-object {$_.name –notlike "*QuickAssist*"} | Remove-AppxPackage
+	[regex]$WhitelistedApps = 'Store|Photos|WindowsCalculator|WindowsNotepad|WindowsNotepad|ScreenSketch|WindowsSoundRecorder|DesktopAppInstaller|WindowsCamera|Terminal|WebExperience|Nvidia|QuickAssist'
+	Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
+	Get-AppxPackage | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
+	Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online
         Write-Host "    Aplicativos desnecessarios desinstalados!"
     }
 )
