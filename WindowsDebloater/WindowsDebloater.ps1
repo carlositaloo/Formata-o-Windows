@@ -95,7 +95,7 @@ $Label1.Font                     = New-Object System.Drawing.Font('Microsoft San
 $Label1.ForeColor                = [System.Drawing.ColorTranslator]::FromHtml("#ffffff")
 
 $Label2                          = New-Object system.Windows.Forms.Label
-$Label2.text                     = "By: iNooTh                                                    Version: 1.3.1"
+$Label2.text                     = "By: iNooTh                                             Version: 1.3.1"
 $Label2.AutoSize                 = $true
 $Label2.width                    = 25
 $Label2.height                   = 10
