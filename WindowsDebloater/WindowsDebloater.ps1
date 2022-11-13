@@ -18,7 +18,7 @@ Write-Host "=                                                                   
 Write-Host "#            Limpar sujeira do Computador após formatação.           ="
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
-Write-Host "=                                                        By: iNooth  #"
+Write-Host "=   By: iNooth                                       Version: 1.3.1  #"
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host " "
 
@@ -256,16 +256,14 @@ $Button4.Add_Click( {
         Start-Sleep 1
 
         Write-Host "Desativando Busca na Web no menu iniciar" -ForegroundColor Cyan
-        $BingSearchEnabled = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
-        Set-ItemProperty -Path $BingSearchEnabled -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord
+
+        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord
         Start-Sleep 1
 
-        $CortanaConsent = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
-        Set-ItemProperty -Path $CortanaConsent -Name 'CortanaConsent' -Value 0 -PropertyType DWord
+        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name 'CortanaConsent' -Value 0 -PropertyType DWord
         Start-Sleep 1
 
-        $DisableSuggestions = 'HKCU:\Software\Policies\Microsoft\Windows\Explorer'
-        New-item -Path $DisableSuggestions
+        New-item -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer
         New-ItemProperty -Path $DisableSuggestions -Name 'DisableSearchBoxSuggestions' -Value 1 -PropertyType DWord
         Start-Sleep 1
         
