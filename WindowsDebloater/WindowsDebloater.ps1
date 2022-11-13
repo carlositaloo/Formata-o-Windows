@@ -2,7 +2,7 @@
     iNooTh
         version 1.3.0
 #>
-# $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host "#                                                                    ="
@@ -15,7 +15,7 @@ Write-Host "#                                                                   
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
 Write-Host "=                                                                    #"
-Write-Host "#            Limpar sujeira do Computador apï¿½s formataï¿½ï¿½o.           ="
+Write-Host "#            Limpar sujeira do Computador após formatação.           ="
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
 Write-Host "=                                                        By: iNooth  #"
@@ -27,12 +27,12 @@ Add-Type -AssemblyName System.Windows.Forms
 
 $Form                            = New-Object system.Windows.Forms.Form
 $Form.ClientSize                 = New-Object System.Drawing.Point(400,480)
-$Form.text                       = "Limpeza do windows apos Formataï¿½ï¿½o"
+$Form.text                       = "Limpeza do windows apos Formatação"
 $Form.TopMost                    = $false
 $Form.BackColor                  = [System.Drawing.ColorTranslator]::FromHtml("#10212f")
 
 $Button1                         = New-Object system.Windows.Forms.Button
-$Button1.text                    = "Desinstalar APPS Desnecessï¿½rios"
+$Button1.text                    = "Desinstalar APPS Desnecessários"
 $Button1.width                   = 326
 $Button1.height                  = 63
 $Button1.location                = New-Object System.Drawing.Point(35,53)
@@ -50,7 +50,7 @@ $Button2.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#
 $Button2.BackColor               = [System.Drawing.ColorTranslator]::FromHtml("#133c5e")
 
 $Button3                         = New-Object system.Windows.Forms.Button
-$Button3.text                    = "Limpar pastas Temporï¿½rias"
+$Button3.text                    = "Limpar pastas Temporárias"
 $Button3.width                   = 326
 $Button3.height                  = 63
 $Button3.location                = New-Object System.Drawing.Point(35,207)
@@ -86,7 +86,7 @@ $Button6.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#
 $Button6.BackColor               = [System.Drawing.ColorTranslator]::FromHtml("#133c5e")
 
 $Label1                          = New-Object system.Windows.Forms.Label
-$Label1.text                     = "Limpeza de formataï¿½ï¿½o"
+$Label1.text                     = "Limpeza de formatação"
 $Label1.AutoSize                 = $true
 $Label1.width                    = 25
 $Label1.height                   = 10
@@ -110,47 +110,47 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 #region Logic 
 
 $Button1.Add_Click( {
-        Write-Host "Desistalaï¿½ï¿½o de aplicativos iniciada" -ForegroundColor Cyan
+        Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
         [regex]$WhitelistedApps = 'Microsoft.WindowsStore|Microsoft.Windows.Photos|Microsoft.WindowsCalculator|Microsoft.ScreenSketch|Microsoft.WindowsSoundRecorder|Microsoft.DesktopAppInstaller|Microsoft.WindowsCamera|NVIDIACorp.NVIDIAControlPanel'
         Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage
         Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online
         Write-Host "Aplicativos desnecessarios desinstalados!`n`n" -ForegroundColor Yellow
 
-        Write-Host "Desativando Hibernaï¿½ï¿½o" -ForegroundColor Cyan
+        Write-Host "Desativando Hibernação" -ForegroundColor Cyan
         powercfg.exe /hibernate off
         Start-Sleep 3
-        Write-Host "Hibernaï¿½ï¿½o Desativada!`n`n" -ForegroundColor Yellow
+        Write-Host "Hibernação Desativada!`n`n" -ForegroundColor Yellow
     }
 )
 
 #############################
 
 $Button2.Add_Click( { 
-        Write-Host "Inicializando desinstalaï¿½ï¿½o do OneDrive!" -ForegroundColor Cyan
+        Write-Host "Inicializando desinstalação do OneDrive!" -ForegroundColor Cyan
         If (Test-Path "$env:USERPROFILE\OneDrive\*") {
             Write-Host "Arquivos encontrados na pasta OneDrive! Verificando se existe uma pasta chamada OneDriveBackupFiles." -ForegroundColor Green
             Start-Sleep 1
 
             If (Test-Path "$env:USERPROFILE\Desktop\OneDriveBackupFiles") {
-                Write-Host "Uma pasta chamada OneDriveBackupFiles jï¿½ existe em sua ï¿½rea de trabalho. Todos os arquivos do seu local do OneDrive serï¿½o movidos para essa pasta." -ForegroundColor Green
+                Write-Host "Uma pasta chamada OneDriveBackupFiles já existe em sua área de trabalho. Todos os arquivos do seu local do OneDrive serão movidos para essa pasta." -ForegroundColor Green
             }
             else {
                 If (!(Test-Path "$env:USERPROFILE\Desktop\OneDriveBackupFiles")) {
-                    Write-Host "Uma pasta chamada OneDriveBackupFiles serï¿½ criada e estarï¿½ localizada em sua ï¿½rea de trabalho. Todos os arquivos do seu local do OneDrive estarï¿½o localizados nessa pasta." -ForegroundColor Green
+                    Write-Host "Uma pasta chamada OneDriveBackupFiles será criada e estará localizada em sua área de trabalho. Todos os arquivos do seu local do OneDrive estarão localizados nessa pasta." -ForegroundColor Green
                     New-item -Path "$env:USERPROFILE\Desktop" -Name "OneDriveBackupFiles"-ItemType Directory -Force
                 }
             }
             Start-Sleep 1
             Move-Item -Path "$env:USERPROFILE\OneDrive\*" -Destination "$env:USERPROFILE\Desktop\OneDriveBackupFiles" -Force
-            Write-Host "Todos os arquivos/pastas foram movidos com sucesso da sua pasta OneDrive para a pasta 'OneDriveBackupFiles' na ï¿½rea de trabalho." -ForegroundColor Green
+            Write-Host "Todos os arquivos/pastas foram movidos com sucesso da sua pasta OneDrive para a pasta 'OneDriveBackupFiles' na área de trabalho." -ForegroundColor Green
             Start-Sleep 1
-            Write-Host "Continuando com a remoï¿½ï¿½o do OneDrive." -ForegroundColor Cyan
+            Write-Host "Continuando com a remoção do OneDrive." -ForegroundColor Cyan
             Start-Sleep 1
         }
         Else {
-            Write-Host "A pasta OneDrive nï¿½o existe ou nï¿½o hï¿½ arquivos encontrados na pasta. Continuando com a remoï¿½ï¿½o do OneDrive." -ForegroundColor Green
+            Write-Host "A pasta OneDrive não existe ou não há arquivos encontrados na pasta. Continuando com a remoção do OneDrive." -ForegroundColor Green
             Start-Sleep 1
-            Write-Host "Habilitando a Polï¿½tica de Grupo 'Impedir o uso do OneDrive para Armazenamento de Arquivos'." -ForegroundColor Green
+            Write-Host "Habilitando a Política de Grupo 'Impedir o uso do OneDrive para Armazenamento de Arquivos'." -ForegroundColor Green
             $OneDriveKey = 'HKLM:Software\Policies\Microsoft\Windows\OneDrive'
             If (!(Test-Path $OneDriveKey)) {
                 Mkdir $OneDriveKey
@@ -217,23 +217,23 @@ $Button3.Add_Click( {
 
         write-Host " "
         write-Host "Removendo Windows\Temp" -ForegroundColor Green
-        Set-Location ï¿½C:\Windows\Tempï¿½
+        Set-Location "C:\Windows\Temp"
         Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
 
         write-Host "Removendo Windows\Prefetch" -ForegroundColor Green
-        Set-Location ï¿½C:\Windows\Prefetchï¿½
+        Set-Location "C:\Windows\Prefetch"
         Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
 
         write-Host "Removendo *\Appdata\Local\Temp\ - %Temp%" -ForegroundColor Green
-        Set-Location ï¿½C:\Usersï¿½
-        Remove-Item ï¿½.\*\Appdata\Local\Temp\*ï¿½ -Recurse -Force -ErrorAction SilentlyContinue
+        Set-Location "C:\Users"
+        Remove-Item ".\*\Appdata\Local\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
 
         write-Host "Removendo *\Appdata\Recent\" -ForegroundColor Green
-        Set-Location ï¿½C:\Usersï¿½
-        Remove-Item ï¿½.\*\Appdata\Recent\*ï¿½ -Recurse -Force -ErrorAction SilentlyContinue
+        Set-Location "C:\Users"
+        Remove-Item ".\*\Appdata\Recent\*" -Recurse -Force -ErrorAction SilentlyContinue
 
         write-Host "Removendo Windows\SoftwareDistribution\Download" -ForegroundColor Green
-        Set-Location ï¿½C:\Windows\SoftwareDistribution\Downloadï¿½
+        Set-Location "C:\Windows\SoftwareDistribution\Download"
         Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
         write-Host " "
 
@@ -241,7 +241,7 @@ $Button3.Add_Click( {
         cleanmgr /sagerun:1 | out-Null
 
         Start-Sleep 3
-        write-Host "Limpesa de arquivos temporï¿½rios feita!" -ForegroundColor Yellow 
+        write-Host "Limpesa de arquivos temporários feita!" -ForegroundColor Yellow 
         Start-Sleep 1
     }
 )
@@ -249,7 +249,7 @@ $Button3.Add_Click( {
 #############################
 
 $Button4.Add_Click( {
-        Write-Host "Ativando modo 'Desempenho Mï¿½ximo' de Energia!" -ForegroundColor Cyan
+        Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
         Start-Sleep 1
         powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61
@@ -283,21 +283,21 @@ $Button5.Add_Click( {
         $ErrorActionPreference = 'SilentlyContinue'
 
         Write-Host "Desativando a Telemetria" -ForegroundColor Cyan
-        Write-Host "Desativando o programa de experiï¿½ncia de comentï¿½rios do Windows" -ForegroundColor Green
+        Write-Host "Desativando o programa de experiência de comentários do Windows" -ForegroundColor Green
         $Advertising = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo"
         If (Test-Path $Advertising) {
             Set-ItemProperty $Advertising Enabled -Value 0 
         }
 
-        #Impede que a experiï¿½ncia de comentï¿½rios do Windows envie dados anï¿½nimos
-        Write-Host "Parando o programa de experiï¿½ncia de comentï¿½rios do Windows" -ForegroundColor Green
+        #Impede que a experiência de comentários do Windows envie dados anônimos
+        Write-Host "Parando o programa de experiência de comentários do Windows" -ForegroundColor Green
         $Period = "HKCU:\Software\Microsoft\Siuf\Rules"
         If (!(Test-Path $Period)) { 
             New-Item $Period
         }
         Set-ItemProperty $Period PeriodInNanoSeconds -Value 0 
 
-        #Impede que aplicativos bloatware retornem e remove as sugestï¿½es do Menu Iniciar            
+        #Impede que aplicativos bloatware retornem e remove as sugestões do Menu Iniciar            
         Write-Host "Adicionando a chave do Registro para evitar que aplicativos bloatware retornem" -ForegroundColor Green
         $registryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent"
         $registryOEM = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
@@ -316,8 +316,8 @@ $Button5.Add_Click( {
         Set-ItemProperty $registryOEM SilentInstalledAppsEnabled -Value 0 
         Set-ItemProperty $registryOEM SystemPaneSuggestionsEnabled -Value 0          
 
-        #Preparando o portal de realidade mista para remoï¿½ï¿½o
-        Write-Host "Definir o valor do Mixed Reality Portal como 0 para que vocï¿½ possa desinstalï¿½-lo em Configuraï¿½ï¿½es" -ForegroundColor Green
+        #Preparando o portal de realidade mista para remoção
+        Write-Host "Definir o valor do Mixed Reality Portal como 0 para que você possa desinstalá-lo em Configurações" -ForegroundColor Green
         $Holo = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Holographic"    
         If (Test-Path $Holo) {
             Set-ItemProperty $Holo  FirstRunSucceeded -Value 0 
@@ -338,8 +338,8 @@ $Button5.Add_Click( {
             Set-ItemProperty $DataCollection3  AllowTelemetry -Value 0 
         }
 
-        #Desativando o rastreamento de localizaï¿½ï¿½o
-        Write-Host "Desativando o rastreamento de localizaï¿½ï¿½o" -ForegroundColor Green
+        #Desativando o rastreamento de localização
+        Write-Host "Desativando o rastreamento de localização" -ForegroundColor Green
         $SensorState = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}"
         $LocationConfig = "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration"
         If (!(Test-Path $SensorState)) {
@@ -351,13 +351,13 @@ $Button5.Add_Click( {
         }
         Set-ItemProperty $LocationConfig Status -Value 0 
 
-        #Pare e desative o serviï¿½o WAP Push
-        Write-Host "Parando e desabilitando o serviï¿½o WAP Push" -ForegroundColor Green
+        #Pare e desative o serviço WAP Push
+        Write-Host "Parando e desabilitando o serviço WAP Push" -ForegroundColor Green
         Stop-Service "dmwappushservice"
         Set-Service "dmwappushservice" -StartupType Disabled
 
         #Disabling the Diagnostics Tracking Service
-        Write-Host "Parando e desativando o serviï¿½o de rastreamento de diagnï¿½stico" -ForegroundColor Green
+        Write-Host "Parando e desativando o serviço de rastreamento de diagnóstico" -ForegroundColor Green
         Stop-Service "DiagTrack"
         Set-Service "DiagTrack" -StartupType Disabled
         Write-Host "A telemetria foi desativada!" -ForegroundColor Yellow
