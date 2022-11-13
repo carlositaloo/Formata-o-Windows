@@ -1,6 +1,6 @@
 <# 
     iNooTh
-        version 1.3.0
+        version 1.3.1
 #>
 $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 Write-Host " "
