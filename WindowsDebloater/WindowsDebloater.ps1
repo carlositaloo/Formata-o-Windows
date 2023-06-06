@@ -257,20 +257,24 @@ $Button4.Add_Click( {
 
         Write-Host "Desativando Busca na Web no menu iniciar" -ForegroundColor Cyan
 
-        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name BingSearchEnabled -PropertyType DWord -Value 0
-        Start-Sleep 1
-
-        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name CortanaConsent -PropertyType DWord -Value 0
-        Start-Sleep 1
-
-        New-item -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer
-        Set-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
-        Start-Sleep 1
+        $SearchKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
+        $ExplorerKeyPath = "HKCU:\Software\Policies\Microsoft\Windows\Explorer"
         
-        Write-Host "Ativando o modo escuro!"-ForegroundColor Cyan
-        $Theme = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"
-        Set-ItemProperty $Theme AppsUseLightTheme -Value 0
-        Start-Sleep 1
+        # Verifica se a propriedade BingSearchEnabled não existe ou possui valor diferente de 0
+        if ((Get-ItemProperty -Path $SearchKeyPath).BingSearchEnabled -ne 0) {
+            New-ItemProperty -Path $SearchKeyPath -Name BingSearchEnabled -PropertyType DWord -Value 0
+        }
+        
+        # Verifica se a propriedade CortanaConsent não existe ou possui valor diferente de 0
+        if ((Get-ItemProperty -Path $SearchKeyPath).CortanaConsent -ne 0) {
+            New-ItemProperty -Path $SearchKeyPath -Name CortanaConsent -PropertyType DWord -Value 0
+        }
+        
+        # Verifica se a propriedade DisableSearchBoxSuggestions não existe ou possui valor diferente de 1
+        if ((Get-ItemProperty -Path $ExplorerKeyPath).DisableSearchBoxSuggestions -ne 1) {
+            New-ItemProperty -Path $ExplorerKeyPath -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
+        }
+        
         
         Write-Host "Pronto Modo de Desempenho." -ForegroundColor Yellow
     }
