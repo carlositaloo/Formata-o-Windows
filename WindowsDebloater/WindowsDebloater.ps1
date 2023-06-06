@@ -134,7 +134,7 @@ $Button1.Add_Click( {
         Write-Host "Ocorreu um erro durante a execução do script:" -ForegroundColor Red
         Write-Host $_.Exception.Message -ForegroundColor Red
     }
-)
+})
 
 #############################
 
