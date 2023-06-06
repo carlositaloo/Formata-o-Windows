@@ -1,8 +1,9 @@
 <# 
     iNooTh
-        version 1.3.1
+        version 1.8.3
 #>
-$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+
+$ScriptContent = @"
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host "#                                                                    ="
@@ -18,7 +19,7 @@ Write-Host "=                                                                   
 Write-Host "#            Limpar sujeira do Computador após formatação.           ="
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
-Write-Host "=   By: iNooth                                       Version: 1.3.8  #"
+Write-Host "=   By: iNooth                                       Version: 1.8.3  #"
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host " "
 
@@ -95,7 +96,7 @@ $Label1.Font                     = New-Object System.Drawing.Font('Microsoft San
 $Label1.ForeColor                = [System.Drawing.ColorTranslator]::FromHtml("#ffffff")
 
 $Label2                          = New-Object system.Windows.Forms.Label
-$Label2.text                     = "By: iNooTh                                             Version: 1.3.8"
+$Label2.text                     = "By: iNooTh                                             Version: 1.8.3"
 $Label2.AutoSize                 = $true
 $Label2.width                    = 25
 $Label2.height                   = 10
@@ -110,16 +111,28 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 #region Logic 
 
 $Button1.Add_Click( {
+    try {
         Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
-        [regex]$WhitelistedApps = 'Microsoft.WindowsStore|Microsoft.Windows.Photos|Microsoft.WindowsCalculator|Microsoft.ScreenSketch|Microsoft.WindowsSoundRecorder|Microsoft.DesktopAppInstaller|Microsoft.WindowsCamera|NVIDIACorp.NVIDIAControlPanel'
+        
+        # Lista de aplicativos que serão mantidos e não desinstalados:
+        [regex]$WhitelistedApps = 'Microsoft.WindowsStore|Microsoft.Windows.Photos|Microsoft.WindowsCalculator|Microsoft.ScreenSketch|Microsoft.WindowsSoundRecorder|Microsoft.DesktopAppInstaller|Microsoft.WindowsCamera|NVIDIACorp.NVIDIAControlPanel|Microsoft.Paint|Microsoft.MicrosoftEdge.Stable|Microsoft.MicrosoftStickyNotes|Microsoft.Notepad|Microsoft.XboxIdentityProvider|Microsoft.ZuneMusic|MicrosoftCorporationII.QuickAssist'
+        
+        # Obtém a lista de pacotes de aplicativos instalados em todos os usuários e remove os pacotes que não correspondem aos aplicativos listados em $WhitelistedApps:
         Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | Remove-AppxPackage | out-Null
+        
+        # Obtém a lista de pacotes de aplicativos instalados em todos os usuários e remove os pacotes que não correspondem aos aplicativos listados em $WhitelistedApps:
         Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online | out-Null
         Write-Host "Aplicativos desnecessarios desinstalados!`n`n" -ForegroundColor Yellow
 
+        # Desativa a hibernação do sistema:
         Write-Host "Desativando Hibernação" -ForegroundColor Cyan
         powercfg.exe /hibernate off
         Start-Sleep 3
         Write-Host "Hibernação Desativada!`n`n" -ForegroundColor Yellow
+    }
+    catch {
+        Write-Host "Ocorreu um erro durante a execução do script:" -ForegroundColor Red
+        Write-Host $_.Exception.Message -ForegroundColor Red
     }
 )
 
@@ -252,8 +265,8 @@ $Button4.Add_Click( {
         Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
         Start-Sleep 1
-        powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61
-        Start-Sleep 1
+        # powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61
+        # Start-Sleep 1
 
         Write-Host "Desativando Busca na Web no menu iniciar" -ForegroundColor Cyan
 
@@ -375,6 +388,7 @@ $Button5.Add_Click( {
 
 $Button6.Add_Click( {
         $form.close()
+        Remove-Item -Path $TempFile -Force
     }
 )
 
@@ -382,3 +396,7 @@ $Button6.Add_Click( {
 #endengine
 
 [void]$Form.ShowDialog()
+"@
+$TempFile = [System.IO.Path]::GetTempFileName() + ".ps1"
+$ScriptContent | Set-Content -Path $TempFile -Encoding UTF8
+Start-Process PowerShell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$TempFile`"" -Verb RunAs
