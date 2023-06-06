@@ -3,7 +3,7 @@
         version 1.8.3
 #>
 
-$ScriptContent = @"
+#$ScriptContent = @"
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host "#                                                                    ="
@@ -396,7 +396,10 @@ $Button6.Add_Click( {
 #endengine
 
 [void]$Form.ShowDialog()
+
+<#
 "@
 $TempFile = [System.IO.Path]::GetTempFileName() + ".ps1"
 $ScriptContent | Set-Content -Path $TempFile -Encoding UTF8
 Start-Process PowerShell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$TempFile`"" -Verb RunAs
+#>
