@@ -257,14 +257,14 @@ $Button4.Add_Click( {
 
         Write-Host "Desativando Busca na Web no menu iniciar" -ForegroundColor Cyan
 
-        New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name BingSearchEnabled -PropertyType DWord -Value 0
+        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name BingSearchEnabled -PropertyType DWord -Value 0
         Start-Sleep 1
 
-        New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name CortanaConsent -PropertyType DWord -Value 0
+        Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name CortanaConsent -PropertyType DWord -Value 0
         Start-Sleep 1
 
         New-item -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer
-        New-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
+        Set-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
         Start-Sleep 1
         
         Write-Host "Ativando o modo escuro!"-ForegroundColor Cyan
