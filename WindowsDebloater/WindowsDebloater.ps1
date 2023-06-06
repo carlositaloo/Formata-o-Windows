@@ -1,9 +1,8 @@
 <# 
     iNooTh
-        version 1.8.3 carlos
+        version 1.8.3
 #>
 
-$ScriptContent = @"
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host "#                                                                    ="
@@ -388,7 +387,6 @@ $Button5.Add_Click( {
 
 $Button6.Add_Click( {
         $form.close()
-        Remove-Item -Path $TempFile -Force
     }
 )
 
@@ -396,10 +394,3 @@ $Button6.Add_Click( {
 #endengine
 
 [void]$Form.ShowDialog()
-
-
-"@
-$TempFile = [System.IO.Path]::GetTempFileName() + ".ps1"
-$ScriptContent | Set-Content -Path $TempFile -Encoding UTF8
-Start-Process PowerShell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$TempFile`"" -Verb RunAs
-
