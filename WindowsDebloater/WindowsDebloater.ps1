@@ -18,7 +18,7 @@ Write-Host "=                                                                   
 Write-Host "#            Limpar sujeira do Computador após formatação.           ="
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
-Write-Host "=   By: iNooth                                       Version: 1.3.4  #"
+Write-Host "=   By: iNooth                                       Version: 1.3.8  #"
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host " "
 
@@ -95,7 +95,7 @@ $Label1.Font                     = New-Object System.Drawing.Font('Microsoft San
 $Label1.ForeColor                = [System.Drawing.ColorTranslator]::FromHtml("#ffffff")
 
 $Label2                          = New-Object system.Windows.Forms.Label
-$Label2.text                     = "By: iNooTh                                             Version: 1.3.4"
+$Label2.text                     = "By: iNooTh                                             Version: 1.3.8"
 $Label2.AutoSize                 = $true
 $Label2.width                    = 25
 $Label2.height                   = 10
@@ -273,8 +273,12 @@ $Button4.Add_Click( {
         # Verifica se a propriedade DisableSearchBoxSuggestions não existe ou possui valor diferente de 1
         if ((Get-ItemProperty -Path $ExplorerKeyPath).DisableSearchBoxSuggestions -ne 1) {
             New-ItemProperty -Path $ExplorerKeyPath -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
-        }
+        }   
         
+        Write-Host "Ativando o modo escuro!"-ForegroundColor Cyan
+        $Theme = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"
+        Set-ItemProperty $Theme AppsUseLightTheme -Value 0
+        Start-Sleep 1
         
         Write-Host "Pronto Modo de Desempenho." -ForegroundColor Yellow
     }
