@@ -112,7 +112,6 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 #region Logic 
 
 $Button1.Add_Click( {
-
     Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
         
     # Abre um novo PowerShell e executa o comando
@@ -129,7 +128,6 @@ $Button1.Add_Click( {
     powercfg.exe /hibernate off
     Start-Sleep 3
     Write-Host "Hibernação Desativada!`n`n" -ForegroundColor Yellow
-    
 })
 
 #############################
