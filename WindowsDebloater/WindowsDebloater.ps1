@@ -115,8 +115,8 @@ $Button1.Add_Click( {
     try {
         Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
         
-        Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/UninstallApps.ps1'))`"
-
+        # Abre um novo PowerShell e executa o comando
+        Start-Process powershell -ArgumentList "-NoExit", "-Command", "iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/debloat'))"
 
         Write-Host "Aplicativos desnecessarios desinstalados!`n`n" -ForegroundColor Yellow
 
