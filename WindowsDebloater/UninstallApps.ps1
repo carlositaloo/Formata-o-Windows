@@ -11,5 +11,6 @@ Read-Host 'Pressione Enter para fechar...'
         
     # Obtém a lista de pacotes Online instalados em todos os usuários e remove os pacotes que não correspondem aos aplicativos listados em $WhitelistedApps:
     Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online | out-Null
-        
 #>
+
+iex ((New-Object System.Net.WebClient.Encoding = [System.Text.Encoding]::UTF8).DownloadString('https://bit.ly/WindowsDebloater10'))
