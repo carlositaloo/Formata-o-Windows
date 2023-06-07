@@ -1,6 +1,8 @@
 <# 
     iNooTh
         version 1.8.3
+
+    iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/WinDebloater')))
 #>
 
 Write-Host " "
@@ -113,7 +115,7 @@ $Button1.Add_Click( {
     try {
         Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
         
-        #Codigo aqui...
+        iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/UninstallApps.ps1'))
 
         Write-Host "Aplicativos desnecessarios desinstalados!`n`n" -ForegroundColor Yellow
 
