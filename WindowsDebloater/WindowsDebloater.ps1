@@ -112,6 +112,8 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 #region Logic 
 
 $Button1.Add_Click( {
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n                     Desinstalar APPS Desnecessários`n`n"
     Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
         
     # Abre um novo PowerShell e executa o comando
@@ -139,6 +141,8 @@ $Button1.Add_Click( {
 #############################
 
 $Button2.Add_Click( { 
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n                          Desisntalar OneDrive`n`n"
         Write-Host "Inicializando desinstalação do OneDrive!" -ForegroundColor Cyan
         If (Test-Path "$env:USERPROFILE\OneDrive\*") {
             Write-Host "Arquivos encontrados na pasta OneDrive! Verificando se existe uma pasta chamada OneDriveBackupFiles." -ForegroundColor Green
@@ -224,6 +228,8 @@ $Button2.Add_Click( {
 #############################
 
 $Button3.Add_Click( {
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n                        Limpar pastas Temporárias`n`n"
         write-Host "Limpeza de pastas iniciada.." -ForegroundColor Cyan
         write-Host "Removendo Windows\Temp" -ForegroundColor Green
         Set-Location "C:\Windows\Temp"
@@ -259,6 +265,8 @@ $Button3.Add_Click( {
 #############################
 
 $Button4.Add_Click( {
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n                        Ativar modo de Desempenho`n`n"
         Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
         Start-Sleep 1
@@ -298,6 +306,8 @@ $Button4.Add_Click( {
 #############################
 
 $Button5.Add_Click( { 
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n                            Desativar Telemetry`n`n"
         $ErrorActionPreference = 'SilentlyContinue'
 
         Write-Host "Desativando a Telemetria" -ForegroundColor Cyan
