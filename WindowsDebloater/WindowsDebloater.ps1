@@ -112,7 +112,7 @@ $Form.controls.AddRange(@($Button1,$Button2,$Button3,$Button4,$Button5,$Button6,
 #region Logic 
 
 $Button1.Add_Click( {
-    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                     Desinstalar APPS Desnecessários`n`n"
     Write-Host "Desistalação de aplicativos iniciada" -ForegroundColor Cyan
         
@@ -141,7 +141,7 @@ $Button1.Add_Click( {
 #############################
 
 $Button2.Add_Click( { 
-    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                          Desisntalar OneDrive`n`n"
         Write-Host "Inicializando desinstalação do OneDrive!" -ForegroundColor Cyan
         If (Test-Path "$env:USERPROFILE\OneDrive\*") {
@@ -228,7 +228,7 @@ $Button2.Add_Click( {
 #############################
 
 $Button3.Add_Click( {
-    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Limpar pastas Temporárias`n`n"
         write-Host "Limpeza de pastas iniciada.." -ForegroundColor Cyan
         write-Host "Removendo Windows\Temp" -ForegroundColor Green
@@ -265,7 +265,7 @@ $Button3.Add_Click( {
 #############################
 
 $Button4.Add_Click( {
-    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
         Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
@@ -306,7 +306,7 @@ $Button4.Add_Click( {
 #############################
 
 $Button5.Add_Click( { 
-    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                            Desativar Telemetry`n`n"
         $ErrorActionPreference = 'SilentlyContinue'
 
