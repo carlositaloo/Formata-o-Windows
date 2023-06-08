@@ -124,13 +124,16 @@ $Button1.Add_Click( {
         Start-Sleep -Milliseconds 500
     }
 
-    Write-Host "Aplicativos desnecessarios desinstalados!`n`n" -ForegroundColor Yellow
+    Write-Host "Aplicativos desnecessarios desinstalados!`n" -ForegroundColor Yellow
 
     # Desativa a hibernação do sistema:
     Write-Host "Desativando Hibernação" -ForegroundColor Cyan
     powercfg.exe /hibernate off
     Start-Sleep 3
-    Write-Host "Hibernação Desativada!`n`n" -ForegroundColor Yellow
+    Write-Host "Espaço em disco liberado!"
+    Write-Host "Hibernação Desativada!" -ForegroundColor Yellow
+
+    Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
 })
 
 #############################
@@ -182,7 +185,7 @@ $Button2.Add_Click( {
         }
         Start-Process $onedrive "/uninstall" -NoNewWindow -Wait
         Start-Sleep 2
-        Write-Host "Parando o explorador de arquivos." -ForegroundColor Cyan
+        Write-Host "Parando o explorador de arquivos." -ForegroundColor Gray
         Start-Sleep 1
         taskkill.exe /F /IM explorer.exe
         Start-Sleep 3
@@ -208,24 +211,20 @@ $Button2.Add_Click( {
             New-Item $ExplorerReg2
         }
         Set-ItemProperty $ExplorerReg2 System.IsPinnedToNameSpaceTree -Value 0
-        Write-Host "Reiniciando o Explorer que foi desligado antes." -ForegroundColor Cyan
+        Write-Host "Reiniciando o Explorer que foi desligado antes." -ForegroundColor Gray
         Start-Process explorer.exe -NoNewWindow
         Write-Host "O OneDrive foi desinstalado com sucesso!" -ForegroundColor Yellow
         
         Remove-item env:OneDrive
+
+        Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
     }
 )
 
 #############################
 
 $Button3.Add_Click( {
-        $objShell = New-Object -ComObject Shell.Application
-        $objFolder = $objShell.Namespace(0xA)
-
-        write-Host "Esvaziando a lixeira." -ForegroundColor Cyan 
-        $objFolder.items() | ForEach-Object{remove-item $_.path -Recurse -Confirm:$false}
-
-        write-Host " "
+        write-Host "Limpeza de pastas iniciada.." -ForegroundColor Cyan
         write-Host "Removendo Windows\Temp" -ForegroundColor Green
         Set-Location "C:\Windows\Temp"
         Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
@@ -247,12 +246,13 @@ $Button3.Add_Click( {
         Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
         write-Host " "
 
-        write-Host "Executando a ferramenta de limpeza de disco do Windows" -ForegroundColor Cyan
+        write-Host "`nExecutando a ferramenta de limpeza de disco do Windows" -ForegroundColor Cyan
         cleanmgr /sagerun:1 | out-Null
 
         Start-Sleep 3
         write-Host "Limpesa de arquivos temporários feita!" -ForegroundColor Yellow 
         Start-Sleep 1
+        Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
     }
 )
 
@@ -291,6 +291,7 @@ $Button4.Add_Click( {
         Start-Sleep 1
         
         Write-Host "Pronto Modo de Desempenho." -ForegroundColor Yellow
+        Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
     }
 )
 
@@ -378,6 +379,8 @@ $Button5.Add_Click( {
         Stop-Service "DiagTrack"
         Set-Service "DiagTrack" -StartupType Disabled
         Write-Host "A telemetria foi desativada!" -ForegroundColor Yellow
+
+        Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
     }
 )
 
