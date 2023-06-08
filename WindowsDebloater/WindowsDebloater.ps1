@@ -29,7 +29,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
 $Form                            = New-Object system.Windows.Forms.Form
 $Form.ClientSize                 = New-Object System.Drawing.Point(400,480)
-$Form.text                       = "Limpeza do windows apos Formatação"
+$Form.text                       = "Limpeza do windows após Formatação"
 $Form.TopMost                    = $false
 $Form.BackColor                  = [System.Drawing.ColorTranslator]::FromHtml("#10212f")
 
