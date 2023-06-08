@@ -43,7 +43,7 @@ $Button1.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#
 $Button1.BackColor               = [System.Drawing.ColorTranslator]::FromHtml("#133c5e")
 
 $Button2                         = New-Object system.Windows.Forms.Button
-$Button2.text                    = "Desisntalar OneDrive"
+$Button2.text                    = "Desinstalar OneDrive"
 $Button2.width                   = 326
 $Button2.height                  = 63
 $Button2.location                = New-Object System.Drawing.Point(35,130)
@@ -142,7 +142,7 @@ $Button1.Add_Click( {
 
 $Button2.Add_Click( { 
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
-    Write-Host "`n                          Desisntalar OneDrive`n`n"
+    Write-Host "`n                          Desinstalar OneDrive`n`n"
         Write-Host "Inicializando desinstalação do OneDrive!" -ForegroundColor Cyan
         If (Test-Path "$env:USERPROFILE\OneDrive\*") {
             Write-Host "Arquivos encontrados na pasta OneDrive! Verificando se existe uma pasta chamada OneDriveBackupFiles." -ForegroundColor Green
