@@ -7,3 +7,5 @@ Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | 
         
 # Obtém a lista de pacotes Online instalados em todos os usuários e remove os pacotes que não correspondem aos aplicativos listados em $WhitelistedApps:
 Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | Remove-AppxProvisionedPackage -Online | out-Null
+
+Stop-Process -Id $PID
