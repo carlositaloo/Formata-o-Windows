@@ -35,21 +35,18 @@
 
 
 O Programa de Limpeza pós-formatação é uma ferramenta desenvolvida para os sistemas operacionais Windows 10 e Windows 11. Seu principal objetivo é fornecer uma solução fácil para liberar espaço em disco e remover arquivos desnecessários, como jogos e aplicativos pré-instalados no Windows, que geralmente não são utilizados pelos usuários comuns.
-
 O programa pode ser facilmente baixado e executado através de uma linha de comando no PowerShell, utilizando o seguinte comando:
-
+```
+iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/WinDebloater')))
+```
 Esse comando realiza o download da string diretamente do repositório do GitHub e a executa, exibindo uma interface simples que oferece as seguintes opções:
-
+<!--
 Remover jogos pré-instalados: Essa opção permite ao usuário remover os jogos que vêm pré-instalados no Windows, liberando espaço em disco e melhorando o desempenho do sistema.
-
 Desinstalar aplicativos desnecessários: Com essa opção, é possível desinstalar os aplicativos pré-instalados no Windows que não são utilizados, otimizando ainda mais o espaço em disco e aumentando a eficiência do sistema.
-
 Limpeza de arquivos temporários: Ao selecionar essa opção, o programa realiza uma limpeza de arquivos temporários, removendo itens desnecessários que ocupam espaço e podem impactar o desempenho do sistema.
-
 Personalização avançada: Essa opção permite uma personalização mais detalhada do processo de limpeza, permitindo que o usuário escolha quais jogos, aplicativos e arquivos temporários deseja remover.
-
 Com o Programa de Limpeza pós-formatação, você pode otimizar e limpar seu sistema operacional Windows de forma rápida e eficiente, garantindo um melhor desempenho e liberando espaço valioso em seu disco rígido.
-
+-->
 
 <!--
 ## Instruções
