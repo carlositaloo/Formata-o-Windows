@@ -12,32 +12,27 @@
     <br/>
     <a href="https://github.com/iNooTh/WindowsDebloater"><strong>Explore the docs »</strong></a>
     <br/>
-    <br/>
-    <a href="https://github.com/iNooTh/WindowsDebloater">View Demo</a>
-    .
-    <a href="https://github.com/iNooTh/WindowsDebloater/issues">Report Bug</a>
-    .
-    <a href="https://github.com/iNooTh/WindowsDebloater/issues">Request Feature</a>
-  </p>
+    <a href="https://microsoft.com/PowerShell" target="_blank"><img src="https://img.shields.io/badge/PowerShell-1f425f?logo=Powershell" target="_blank" align="center"></a>
+    <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" align="center"></a>
+</a>
 </p>
 
-![License](https://img.shields.io/github/license/iNooTh/WindowsDebloater) 
+## Índice
 
-## Table Of Contents
-
-* [About the Project](#about-the-project)
-* [Getting Started](#getting-started)
+* [Sobre o projeto](#sobre-o-projeto)
+* [Instruções](#instruções)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [License](#license)
 * [Authors](#authors)
-* [Acknowledgements](#acknowledgements)
 
-## About The Project
 
-![Screen Shot](https://i.imgur.com/GFyTYoe.png)
+## Sobre o projeto
+<div style="display: inline_block" align="center"><br>
+  <a href="#">
+    <img align="center" alt="Screen Shot" height="635" width="770" src="https://i.imgur.com/GFyTYoe.png">
+  </a>
+</div>
+
 
 O Programa de Limpeza pós-formatação é uma ferramenta desenvolvida para os sistemas operacionais Windows 10 e Windows 11. Seu principal objetivo é fornecer uma solução fácil para liberar espaço em disco e remover arquivos desnecessários, como jogos e aplicativos pré-instalados no Windows, que geralmente não são utilizados pelos usuários comuns.
 
@@ -55,7 +50,7 @@ Personalização avançada: Essa opção permite uma personalização mais detal
 
 Com o Programa de Limpeza pós-formatação, você pode otimizar e limpar seu sistema operacional Windows de forma rápida e eficiente, garantindo um melhor desempenho e liberando espaço valioso em seu disco rígido.
 
-## Getting Started
+## Instruções
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
@@ -92,29 +87,7 @@ npm install
 const API_KEY = 'ENTER YOUR API';
 ```
 
-## Usage
+## Autores
 
-É concedida permissão para qualquer pessoa obter e utilizar este software, sem restrições, incluindo o direito de copiar, modificar, publicar, distribuir e vender cópias do software. Não há garantia fornecida, e os autores não serão responsáveis por qualquer reclamação ou danos decorrentes do uso do software.
+* [iNooTh](https://github.com/carlositaloo)
 
-## Roadmap
-
-See the [open issues](https://github.com/iNooTh/WindowsDebloater/issues) for a list of proposed features (and known issues).
-
-### Creating A Pull Request
-
-
-
-## License
-
-Distributed under the MIT License. See [LICENSE](https://github.com/iNooTh/WindowsDebloater/blob/main/LICENSE.md) for more information.
-
-## Authors
-
-* **iNooTh** - ** - [iNooTh](https://github.com/carlositaloo) - **
-* **** - ** - []() - **
-
-## Acknowledgements
-
-* [ShaanCoding](https://github.com/ShaanCoding/)
-* [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
-* [ImgShields](https://shields.io/)
