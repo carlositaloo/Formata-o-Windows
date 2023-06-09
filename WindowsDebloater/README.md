@@ -50,6 +50,8 @@ Personalização avançada: Essa opção permite uma personalização mais detal
 
 Com o Programa de Limpeza pós-formatação, você pode otimizar e limpar seu sistema operacional Windows de forma rápida e eficiente, garantindo um melhor desempenho e liberando espaço valioso em seu disco rígido.
 
+
+<!--
 ## Instruções
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -86,6 +88,7 @@ npm install
 ```JS
 const API_KEY = 'ENTER YOUR API';
 ```
+-->
 
 ## Autores
 
