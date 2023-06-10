@@ -13,6 +13,7 @@
     <a href="https://github.com/iNooTh/WindowsDebloater"><strong>Explore the docs »</strong></a>
     <br/>
     <a href="https://microsoft.com/PowerShell" target="_blank"><img src="https://img.shields.io/badge/PowerShell-1f425f?logo=Powershell" target="_blank" align="center"></a>
+    &nbsp;
     <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" align="center"></a>
 </a>
 </p>
