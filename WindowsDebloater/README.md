@@ -21,7 +21,7 @@
 ## Índice
 
 * [Sobre o projeto](#sobre-o-projeto)
-* [Instruções](#instruções)
+* [Opções/Instruções](#opções/instruções)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Authors](#authors)
@@ -49,21 +49,38 @@ Personalização avançada: Essa opção permite uma personalização mais detal
 Com o Programa de Limpeza pós-formatação, você pode otimizar e limpar seu sistema operacional Windows de forma rápida e eficiente, garantindo um melhor desempenho e liberando espaço valioso em seu disco rígido.
 -->
 
-<!--
-## Instruções
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+## Opções/Instruções
 
-### Prerequisites
+# Desinstalar Aplicativos Desnecessários
 
-This is an example of how to list things you need to use the software and how to install them.
+Essa opção permite remover todos os aplicativos pré-instalados que vêm com o Windows Store. Ela removerá qualquer aplicativo que NÃO esteja nesta lista:
 
-* npm
+- Microsoft.WindowsStore
+- Microsoft.Windows.Photos
+- Microsoft.WindowsCalculator
+- Microsoft.ScreenSketch
+- Microsoft.WindowsSoundRecorder
+- Microsoft.DesktopAppInstaller
+- Microsoft.WindowsCamera
+- NVIDIACorp.NVIDIAControlPanel
+- Microsoft.Paint
+- Microsoft.MicrosoftEdge.Stable
+- Microsoft.Notepad
+- Microsoft.XboxIdentityProvider
+- Microsoft.ZuneMusic
+- MicrosoftCorporationII.QuickAssist
+- WinRAR.ShellExtension
+- Microsoft.WindowsTerminal
 
-```sh
-npm install npm@latest -g
-```
+
+Você pode encontrar informações detalhadas sobre cada um desses aplicativos/comandos no próprio site da Microsoft:
+https://learn.microsoft.com/pt-br/windows/application-management/apps-in-windows-10
+
+Se você acredita que um aplicativo é extremamente necessário para o funcionamento correto do Windows, você pode nos informar para que ele seja adicionado à lista. O Windows 11 está passando por uma transição para tornar os aplicativos nativos do Windows disponíveis na Windows Store, o que significa que há uma probabilidade de que essa lista seja alterada em futuras atualizações. Devido a essa possibilidade, podem ocorrer bugs, no entanto, até o momento, essa ferramenta tem se mostrado indispensável após as minhas formatações.
+
+
+
 
 ### Installation
 
@@ -86,7 +103,7 @@ npm install
 ```JS
 const API_KEY = 'ENTER YOUR API';
 ```
--->
+
 
 ## Autores
 
