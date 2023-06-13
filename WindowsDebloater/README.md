@@ -164,7 +164,8 @@ Uma vez que o PowerShell é aberto como administrador, você pode executar o com
 
 2. **`[System.Text.Encoding]::UTF8.GetString`**: É um comando que converte um tipo de informação chamado "bytes" em uma forma legível para nós, chamada de string. Neste caso, está usando uma codificação chamada UTF-8 (Exibe caracteres e pontuação brasileiros).
 
-3. **`New-Object System.Net.WebClient`**: Cria um objeto especial que permite baixar e enviar informações para a internet.
+3. **`New-Object System.Net.WebClient`**: Cria um objeto especial que permite baixar e enviar informações para a internet.  
+  Nesse caso baixar o script.
 
 4. **`.DownloadData('https://bit.ly/WinDebloater')`**: Baixa informações de um site específico, neste caso, o arquivo localizado em 'https://bit.ly/WinDebloater'.
 
