@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/iNooTh/WindowsDebloater">
+  <a href="https://github.com/carlositaloo/Formata-o-Windows/tree/main/WindowsDebloater">
     <img src="https://i.imgur.com/drarQVx.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -10,7 +10,7 @@
     Limpeza do windows após Formatação
     <br/>
     <br/>
-    <a href="https://github.com/iNooTh/WindowsDebloater"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/carlositaloo/Formata-o-Windows/tree/main/WindowsDebloater"><strong>Explore the docs »</strong></a>
     <br/>
     <a href="https://microsoft.com/PowerShell" target="_blank"><img src="https://img.shields.io/badge/PowerShell-1f425f?logo=Powershell" target="_blank" align="center"></a>
     &nbsp;
