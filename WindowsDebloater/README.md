@@ -1,8 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/carlositaloo/Formata-o-Windows/tree/main/WindowsDebloater">
-    <img src="https://i.imgur.com/drarQVx.png" alt="Logo" width="80" height="80">
-  </a>
+    <img src="https://i.imgur.com/drarQVx.png" alt="Logo" width="80" height="80" unselectable="on">
 
   <h3 align="center">WindowsDebloater</h3>
 
