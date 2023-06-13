@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-    <img src="https://i.imgur.com/drarQVx.png" alt="Logo" width="80" height="80" style="max-width: 100%;pointer-events: none;user-select: none;">
+  <img src="https://i.imgur.com/drarQVx.png" alt="Logo" width="80" height="80" style="max-width: 100%;pointer-events: none;user-select: none;">
 
   <h3 align="center">WindowsDebloater</h3>
 
