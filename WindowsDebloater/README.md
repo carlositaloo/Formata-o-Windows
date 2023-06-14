@@ -182,5 +182,12 @@ Esta licença concede permissão gratuita para qualquer pessoa obter uma cópia 
 ## Autores
 
 * [iNooTh](https://github.com/carlositaloo)
-* [Refeencia: Sycnex](https://github.com/Sycnex/Windows10Debloater/)
+* [Referência: Sycnex](https://github.com/Sycnex/Windows10Debloater/)
 
+---
+<br>
+<p align="right">
+<sup>
+Sempre tive o desejo de realizar uma formatação limpa no meu computador e, ao longo do tempo, fui seguindo um processo passo a passo para fazer essa limpeza. Decidi, então, me aprofundar no assunto e aprender mais para desenvolver um script que facilitasse todo o processo de formatação do computador com apenas alguns cliques. Como estudante de Análise e Desenvolvimento de Sistemas, decidi colocar à prova a dificuldade de criar algo assim. Apesar de me identificar mais com a linguagem Python, optei por desenvolver o aplicativo em PowerShell para obter uma integração mais sólida com o sistema, tornando-o mais prático, pois se trata apenas de um script.
+</sup>
+</p>
