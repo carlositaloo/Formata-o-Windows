@@ -5,6 +5,25 @@
     iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/WinDebloater')))
 #>
 
+# Verifica se o script está sendo executado como administrador
+if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    # Se não estiver sendo executado como administrador, relança o script como administrador
+    Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    exit
+}
+
+# Abre um novo PowerShell e executa o comando para Criar um Ponto de Restauração
+$process = Start-Process powershell -ArgumentList "-NoExit", "-Command", "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/restorePoint.ps1'))" -PassThru
+
+# Aguarda até que o outro PowerShell seja fechado
+Write-Host "Criando ponto de restauração...`n" -ForegroundColor Yellow
+
+while (-not $process.HasExited) {
+    Start-Sleep -Milliseconds 500
+}
+Write-Host "Ponto de Restauração criado!`n" -ForegroundColor Yellow
+
+Clear-Host
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host "#                                                                    ="
@@ -230,26 +249,25 @@ $Button2.Add_Click( {
 $Button3.Add_Click( {
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Limpar pastas Temporárias`n`n"
-        write-Host "Limpeza de pastas iniciada.." -ForegroundColor Cyan
+        write-Host "Limpeza de pastas iniciada..`n" -ForegroundColor Cyan
+
         write-Host "Removendo Windows\Temp" -ForegroundColor Green
-        Set-Location "C:\Windows\Temp"
-        Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:WinDir\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+
 
         write-Host "Removendo Windows\Prefetch" -ForegroundColor Green
-        Set-Location "C:\Windows\Prefetch"
-        Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:WinDir\Prefetch\*" -Recurse -Force -ErrorAction SilentlyContinue
 
         write-Host "Removendo *\Appdata\Local\Temp\ - %Temp%" -ForegroundColor Green
-        Set-Location "C:\Users"
-        Remove-Item ".\*\Appdata\Local\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
 
-        write-Host "Removendo *\Appdata\Recent\" -ForegroundColor Green
-        Set-Location "C:\Users"
-        Remove-Item ".\*\Appdata\Recent\*" -Recurse -Force -ErrorAction SilentlyContinue
+
+        write-Host "Removendo *\Appdata\...\Recent\" -ForegroundColor Green
+        Remove-Item -Path "$env:USERPROFILE\AppData\Roaming\Microsoft\Windows\Recent\*" -Recurse -Force -ErrorAction SilentlyContinue
+
 
         write-Host "Removendo Windows\SoftwareDistribution\Download" -ForegroundColor Green
-        Set-Location "C:\Windows\SoftwareDistribution\Download"
-        Remove-Item * -Recurse -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:WinDir\SoftwareDistribution\Download\*" -Recurse -Force -ErrorAction SilentlyContinue
         write-Host " "
 
         write-Host "`nExecutando a ferramenta de limpeza de disco do Windows" -ForegroundColor Cyan
@@ -267,30 +285,44 @@ $Button3.Add_Click( {
 $Button4.Add_Click( {
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
+
+        Write-Host "Desativando animações visuais" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value 90
+        Start-Sleep 1
+
         Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
         Start-Sleep 1
-        # powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61
+        # Coloca em vigor o modo desempenho:
+        # powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61 
         # Start-Sleep 1
 
-        Write-Host "Desativando Busca na Web no menu iniciar" -ForegroundColor Cyan
+        $WVersion = [System.Environment]::OSVersion.Version.Build
+        if ($WVersion -ge 19000 -and $WVersion -lt 19999) {
+            Write-Host "Desativando Busca na Web no menu iniciar" -ForegroundColor Cyan
 
-        $SearchKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
-        $ExplorerKeyPath = "HKCU:\Software\Policies\Microsoft\Windows\Explorer"
+            $SearchKey = "HKCU\Software\Microsoft\Windows\CurrentVersion\Search"
+            $ExplorerKey = "HKCU\Software\Policies\Microsoft\Windows\Explorer"
+            New-Item -Path $SearchKeyPath -Force | Out-Null
+            New-Item -Path $ExplorerKeyPath -Force | Out-Null
+
+            $SearchKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
+            $ExplorerKeyPath = "HKCU:\Software\Policies\Microsoft\Windows\Explorer"
         
-        # Verifica se a propriedade BingSearchEnabled não existe ou possui valor diferente de 0
-        if ((Get-ItemProperty -Path $SearchKeyPath).BingSearchEnabled -ne 0) {
-            New-ItemProperty -Path $SearchKeyPath -Name BingSearchEnabled -PropertyType DWord -Value 0
-        }
-        
-        # Verifica se a propriedade CortanaConsent não existe ou possui valor diferente de 0
-        if ((Get-ItemProperty -Path $SearchKeyPath).CortanaConsent -ne 0) {
-            New-ItemProperty -Path $SearchKeyPath -Name CortanaConsent -PropertyType DWord -Value 0
-        }
-        
-        # Verifica se a propriedade DisableSearchBoxSuggestions não existe ou possui valor diferente de 1
-        if ((Get-ItemProperty -Path $ExplorerKeyPath).DisableSearchBoxSuggestions -ne 1) {
-            New-ItemProperty -Path $ExplorerKeyPath -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
+            # Verifica se a propriedade BingSearchEnabled não existe ou possui valor diferente de 0
+            if ((Get-ItemProperty -Path $SearchKeyPath).BingSearchEnabled -ne 0) {
+                New-ItemProperty -Path $SearchKeyPath -Name BingSearchEnabled -PropertyType DWord -Value 0
+            }
+            
+            # Verifica se a propriedade CortanaConsent não existe ou possui valor diferente de 0
+            if ((Get-ItemProperty -Path $SearchKeyPath).CortanaConsent -ne 0) {
+                New-ItemProperty -Path $SearchKeyPath -Name CortanaConsent -PropertyType DWord -Value 0
+            }
+            
+            # Verifica se a propriedade DisableSearchBoxSuggestions não existe ou possui valor diferente de 1
+            if ((Get-ItemProperty -Path $ExplorerKeyPath).DisableSearchBoxSuggestions -ne 1) {
+                New-ItemProperty -Path $ExplorerKeyPath -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1
+            }
         }   
         
         Write-Host "Ativando o modo escuro!"-ForegroundColor Cyan
