@@ -13,9 +13,8 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 # Baixa um script que cria um ponto de restauração
-Start-Job -ScriptBlock {
-    iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/restorePoint.ps1'))
-}
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/restorePoint.ps1'))`"" -WindowStyle Hidden
+
 
 
 Write-Host " "
