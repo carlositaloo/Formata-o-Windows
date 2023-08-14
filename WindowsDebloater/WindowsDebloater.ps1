@@ -16,14 +16,14 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 $process = Start-Process powershell -ArgumentList "-NoExit", "-Command", "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/restorePoint.ps1'))" -PassThru
 
 # Aguarda até que o outro PowerShell seja fechado
-Write-Host "Criando ponto de restauração...`n" -ForegroundColor Yellow
+# Write-Host "Criando ponto de restauração...`n" -ForegroundColor Yellow
 
 while (-not $process.HasExited) {
     Start-Sleep -Milliseconds 500
 }
-Write-Host "Ponto de Restauração criado!`n" -ForegroundColor Yellow
+# Write-Host "Ponto de Restauração criado!`n" -ForegroundColor Yellow
+# Clear-Host
 
-Clear-Host
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host "#                                                                    ="
