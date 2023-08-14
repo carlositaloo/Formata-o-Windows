@@ -30,7 +30,7 @@ Write-Host "=                                                                   
 Write-Host "#            Limpar sujeira do Computador após formatação.           ="
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
-Write-Host "=   By: iNooth                                      Version: 1.10.3  #"
+Write-Host "=  By: iNooth                                       Version: 1.10.3  #"
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host " "
 
