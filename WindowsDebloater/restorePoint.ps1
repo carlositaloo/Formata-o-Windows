@@ -1,9 +1,3 @@
-# Verifica se o script está sendo executado com privilégios de administrador
-if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host "Este script precisa ser executado como administrador."
-    exit
-}
-
 # Cria um ponto de restauração
 $description = "Windows Debloater - Ponto de Restauração"
 
