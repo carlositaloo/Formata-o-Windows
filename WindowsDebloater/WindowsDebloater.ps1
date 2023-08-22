@@ -265,7 +265,7 @@ $Button3.Add_Click( {
         cleanmgr /sagerun:1 | out-Null
 
         Start-Sleep 3
-        write-Host "Limpesa de arquivos temporários feita!" -ForegroundColor Yellow 
+        write-Host "Limpeza de arquivos temporários feita!" -ForegroundColor Yellow 
         Start-Sleep 1
         Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
     }
