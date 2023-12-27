@@ -1,5 +1,3 @@
-![Visitor Count](https://visitor-badge.glitch.me/badge?page_id=carlositaloo.WindowsDebloater)
-
 <br/>
   <p align="center">
   <a href="#">
