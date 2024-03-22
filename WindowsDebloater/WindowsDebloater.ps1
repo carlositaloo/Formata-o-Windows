@@ -277,6 +277,12 @@ $Button4.Add_Click( {
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
 
+        # Definir o mecanismo de pesquisa padrão do Microsoft Edge como Google
+        Write-Host "Definiu o mecanismo de pesquisa padrão do Microsoft Edge como Google" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Edge\SearchScopes\{0633EE93-D776-472f-A0FF-E1416B8B2E3A}" -Name "DisplayName" -Value "Google"
+        Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Edge\SearchScopes\{0633EE93-D776-472f-A0FF-E1416B8B2E3A}" -Name "URL" -Value "http://www.google.com/search?q={searchTerms}"
+        Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Edge\SearchScopes" -Name "DefaultScope" -Value "{0633EE93-D776-472f-A0FF-E1416B8B2E3A}"
+
         Write-Host "Desativando animações visuais" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value 90
         Start-Sleep 1
@@ -294,8 +300,9 @@ $Button4.Add_Click( {
 
             $SearchKey = "HKCU\Software\Microsoft\Windows\CurrentVersion\Search"
             $ExplorerKey = "HKCU\Software\Policies\Microsoft\Windows\Explorer"
-            New-Item -Path $SearchKeyPath -Force | Out-Null
-            New-Item -Path $ExplorerKeyPath -Force | Out-Null
+            # Cria a chave do Registro definida na variável
+            New-Item -Path $SearchKey -Force | Out-Null
+            New-Item -Path $ExplorerKey -Force | Out-Null
 
             $SearchKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
             $ExplorerKeyPath = "HKCU:\Software\Policies\Microsoft\Windows\Explorer"
@@ -316,7 +323,7 @@ $Button4.Add_Click( {
             }
         }   
         
-        Write-Host "Ativando o modo escuro!"-ForegroundColor Cyan
+        Write-Host "Ativando o modo escuro!" -ForegroundColor Cyan
         $Theme = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"
         Set-ItemProperty $Theme AppsUseLightTheme -Value 0
         Start-Sleep 1
