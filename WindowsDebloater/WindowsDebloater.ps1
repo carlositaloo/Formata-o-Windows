@@ -278,7 +278,7 @@ $Button4.Add_Click( {
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
 
         Write-Host "Desativando animações visuais" -ForegroundColor Cyan
-        New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -PropertyType DWORD -Value 2
+        New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -PropertyType DWORD -Value 2
         Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value 90
         Start-Sleep 1
 
