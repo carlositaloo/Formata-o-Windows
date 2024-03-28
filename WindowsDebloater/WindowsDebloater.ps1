@@ -276,11 +276,39 @@ $Button3.Add_Click( {
 $Button4.Add_Click( {
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
+        powercfg -SetActive SCHEME_MIN
+
+        powercfg -change -standby-timeout-ac 60
+        powercfg -change -standby-timeout-dc 30
+        powercfg -change -monitor-timeout-ac 15
+        powercfg -change -monitor-timeout-dc 10
+        powercfg -change -disk-timeout-ac 0
+        powercfg -change -disk-timeout-dc 120
+
+        Write-Host "Ativar o Sensor de Armazenamento" -ForegroundColor Cyan
+        New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy" -Name "01" -Value 1 -PropertyType DWORD -Force
+
+        Write-Host "Ativar histórico de area de transferência" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Clipboard" -Name "EnableClipboardHistory" -Value 1 -Type DWord
+
+        Write-Host "Apenas o icone na caixa de pesquisa da barra de tarefas" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Value 0
+
+        Write-Host "Ocultar a Visão de Tarefas" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Value 0
+
+        Write-Host "Ativar Finalizar tarefa na barra de tarefas" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" -Name "TaskbarEndTask" -Value 1
+
 
         Write-Host "Desativando animações visuais" -ForegroundColor Cyan
         New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -PropertyType DWORD -Value 2
         Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value 90
         Start-Sleep 1
+
+        Write-Host "Alterar o layout do Menu Iniciar para priorizar aplicativos fixados" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name Start_Layout -Value 1
+
 
         Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
@@ -319,8 +347,8 @@ $Button4.Add_Click( {
         }   
         
         Write-Host "Ativando o modo escuro!" -ForegroundColor Cyan
-        $Theme = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"
-        Set-ItemProperty $Theme AppsUseLightTheme -Value 0
+        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -PropertyType DWORD -Force
+        New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0 -PropertyType DWORD -Force
         Start-Sleep 1
         
         Write-Host "Pronto Modo de Desempenho." -ForegroundColor Yellow
@@ -422,6 +450,11 @@ $Button5.Add_Click( {
 #############################
 
 $Button6.Add_Click( {
+        Write-Host "Reiniciar o Explorador do Windows para aplicar as alterações" -ForegroundColor Green
+        Stop-Process -Name explorer -Force
+        Start-Sleep 1
+        Start-Process explorer
+
         $form.close()
     }
 )
