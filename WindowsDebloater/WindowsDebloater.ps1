@@ -276,6 +276,9 @@ $Button3.Add_Click( {
 $Button4.Add_Click( {
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
+
+        winget install --id RARLab.WinRAR
+        
         powercfg -SetActive SCHEME_MIN
 
         powercfg -change -standby-timeout-ac 60
