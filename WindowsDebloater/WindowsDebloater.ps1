@@ -277,9 +277,8 @@ $Button4.Add_Click( {
     Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
 
-        Write-Host "Instalando WinRAR..." -ForegroundColor Cyan
-        Start-Process -FilePath "winget" -ArgumentList "install --id RARLab.WinRAR -y" -Wait -NoNewWindow
-        Write-Host "WinRAR instalado com sucesso!" -ForegroundColor Green
+        Write-Host "Instalando WinRAR" -ForegroundColor Cyan
+        winget install --id WinRAR.WinRAR --force --uninstall-previous -h
 
         
         powercfg -SetActive SCHEME_MIN
@@ -306,26 +305,9 @@ $Button4.Add_Click( {
         Write-Host "Ativar Finalizar tarefa na barra de tarefas" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" -Name "TaskbarEndTask" -Value 1
 
-
-        Write-Host "Desativando animações visuais" -ForegroundColor Cyan
-        
-        # Verificar se a propriedade já existe antes de criar
-        if (-not (Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\VisualFXSetting")) {
-            New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -PropertyType DWORD -Value 2
-        }
-        
-        # Verificar se a propriedade já existe antes de modificar
-        if (-not (Test-Path "HKCU:\Control Panel\Desktop\UserPreferencesMask")) {
-            Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value 90
-        }
-        
-        Start-Sleep 1
-
-
         Write-Host "Alterar o layout do Menu Iniciar para priorizar aplicativos fixados" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name Start_Layout -Value 1
-
-
+        
         Write-Host "Ativando modo 'Desempenho Máximo' de Energia!" -ForegroundColor Cyan
         powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
         Start-Sleep 1
