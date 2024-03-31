@@ -120,15 +120,14 @@ Além disso, o script também executa a ferramenta de limpeza de disco do Window
 ### Ativar modo de Desempenho
 Botão "Ativar modo de Desempenho":
 
-- Ativa o modo de desempenho do Windows para melhorar o desempenho do computador.
-- Desempenho máximo
-Ele ativa o novo modo de energia máxima, encontrado em:   
-Painel de Controle > Hardware e Sons > Opções de Energia.
-"Desempenho máximo".
-
-- Desativando Busca na Web no menu iniciar.
-
-- Ativando o modo escuro.
+- **Instalar WinRAR**: Garante o software para compactação/descompactação de arquivos.
+- **Configurações de Energia**: Coloca o modo de energia em Desempenho.
+- **Ativar Sensor de Armazenamento**: Gerencia automaticamente o espaço em disco.
+- **Histórico de Área de Transferência**: Acesso a itens copiados anteriormente. (_Win+V_)
+- **Personalização da Barra de Tarefas**: Mais ícones na barra de tarefas e menos recentes.
+- **Modo de Desempenho Máximo de Energia**: Adiciona 'Desempenho Máximo' no modo de energia.
+- **Desativar Busca na Web**: Desativa a busca na Web no menu iniciar.
+- **Ativar Modo Escuro**: Reduz a fadiga ocular e economiza energia.
 
 
 ##
