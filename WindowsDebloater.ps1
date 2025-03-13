@@ -1,6 +1,6 @@
 <# 
     iNooTh
-        version 1.10.3
+        version 1.13.7
         
     iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/WinDebloater')))
 #>
@@ -13,7 +13,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 # Baixa um script que cria um ponto de restauração
-Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/restorePoint.ps1'))`"" -WindowStyle Hidden -NoNewWindow -Wait *>$null
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -Command `"iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/carlositaloo/Formata-o-Windows/main/WindowsDebloater/RestorePoint.ps1'))`"" -WindowStyle Hidden -NoNewWindow -Wait *>$null
 
 Write-Host " "
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
@@ -30,7 +30,7 @@ Write-Host "=                                                                   
 Write-Host "#            Limpar sujeira do Computador após formatação.           ="
 Write-Host "=                                                                    #"
 Write-Host "#                                                                    ="
-Write-Host "=  By: iNooth                                       Version: 1.13.4  #"
+Write-Host "=  By: iNooth                                       Version: 1.13.7  #"
 Write-Host "=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
 Write-Host " "
 
@@ -107,7 +107,7 @@ $Label1.Font                     = New-Object System.Drawing.Font('Microsoft San
 $Label1.ForeColor                = [System.Drawing.ColorTranslator]::FromHtml("#ffffff")
 
 $Label2                          = New-Object system.Windows.Forms.Label
-$Label2.text                     = "By: iNooTh                                          Version: 1.13.4"
+$Label2.text                     = "By: iNooTh                                          Version: 1.13.7"
 $Label2.AutoSize                 = $true
 $Label2.width                    = 25
 $Label2.height                   = 10

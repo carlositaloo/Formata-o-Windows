@@ -41,7 +41,7 @@
 O Programa de Limpeza pós-formatação é uma ferramenta desenvolvida para os sistemas operacionais Windows 10 e Windows 11. Seu principal objetivo é fornecer uma solução fácil para liberar espaço em disco e remover arquivos desnecessários, como jogos e aplicativos pré-instalados no Windows, que geralmente não são utilizados pelos usuários comuns.
 O programa pode ser facilmente baixado e executado através de uma linha de comando no PowerShell, utilizando o seguinte comando:
 ```
-iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/WinDebloater')))
+iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/Windows-Debloater')))
 ```
 Esse comando realiza o download da string diretamente do repositório do GitHub e a executa, exibindo uma interface simples que oferece as seguintes opções:
 
@@ -61,22 +61,32 @@ Botão "Desinstalar APPS Desnecessários":
 <br>
 Essa opção permite remover todos os aplicativos pré-instalados que vêm com o Windows Store. Ela removerá qualquer aplicativo que NÃO esteja nesta lista:
 
-- Microsoft.WindowsStore
-- Microsoft.Windows.Photos
-- Microsoft.WindowsCalculator
-- Microsoft.ScreenSketch
-- Microsoft.WindowsSoundRecorder
-- Microsoft.DesktopAppInstaller
-- Microsoft.WindowsCamera
-- NVIDIACorp.NVIDIAControlPanel
-- Microsoft.Paint
-- Microsoft.MicrosoftEdge.Stable
-- Microsoft.Notepad
-- Microsoft.XboxIdentityProvider
-- Microsoft.ZuneMusic
-- MicrosoftCorporationII.QuickAssist
-- WinRAR.ShellExtension
-- Microsoft.WindowsTerminal
+- Microsoft.WindowsStore (Loja de aplicativos do Windows)
+- Microsoft.Windows.Photos (Visualizador de fotos do Windows)
+- Microsoft.WindowsCalculator (Calculadora do Windows)
+- Microsoft.ScreenSketch (Ferramenta de Captura e Esboço)
+- Microsoft.WindowsSoundRecorder (Gravador de Voz)
+- Microsoft.DesktopAppInstaller (Instalador de aplicativos em pacotes .appx e .msix)
+- Microsoft.WindowsCamera (Aplicativo de câmera padrão)
+- NVIDIACorp.NVIDIAControlPanel (Painel de controle da NVIDIA)
+- Microsoft.Paint (Editor de imagens básico - Paint)
+- Microsoft.MicrosoftEdge.Stable (Navegador Microsoft Edge)
+- Microsoft.Notepad (Bloco de Notas)
+- Microsoft.XboxIdentityProvider (Gerencia a conta Xbox nos aplicativos e jogos)
+- Microsoft.ZuneMusic (Reprodutor de música - Groove Music)
+- MicrosoftCorporationII.QuickAssist (Assistência rápida para suporte remoto)
+- WinRAR.ShellExtension (Extensão do WinRAR para gerenciar arquivos compactados)
+- Microsoft.WindowsTerminal (Terminal moderno e avançado do Windows)
+- Microsoft.GetHelp (Essencial para diagnóstico e suporte do Windows)
+- Microsoft.VP9VideoExtensions (Extensão para reprodução de vídeos em formato VP9)
+- Microsoft.HEVCVideoExtension (Extensão para reprodução de vídeos em formato HEVC)
+- Microsoft.WebMediaExtensions (Extensão para reprodução de formatos multimídia na web)
+
+Aqui está a versão simplificada e otimizada apenas para desinstalar os aplicativos não desejados via powershell:
+```
+[regex]$WhitelistedApps='Microsoft.WindowsStore|Microsoft.GetHelp|Microsoft.Windows.Photos|Microsoft.WindowsCalculator|Microsoft.ScreenSketch|Microsoft.WindowsSoundRecorder|Microsoft.DesktopAppInstaller|Microsoft.WindowsCamera|NVIDIACorp.NVIDIAControlPanel|Microsoft.Paint|Microsoft.MicrosoftEdge.Stable|Microsoft.WindowsNotepad|Microsoft.XboxIdentityProvider|Microsoft.ZuneMusic|MicrosoftCorporationII.QuickAssist|WinRAR.ShellExtension|Microsoft.WindowsTerminal|Microsoft.VP9VideoExtensions|Microsoft.HEVCVideoExtension|Microsoft.WebMediaExtensions'; Get-AppxPackage -AllUsers | Where-Object {$_.Name -NotMatch $WhitelistedApps} | ForEach-Object { Remove-AppxPackage -Package $_.PackageFullName -ErrorAction SilentlyContinue }; Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -NotMatch $WhitelistedApps} | ForEach-Object { Remove-AppxProvisionedPackage -Online -PackageName $_.PackageName -ErrorAction SilentlyContinue }
+
+```
 
 
 Você pode encontrar informações detalhadas sobre cada um desses aplicativos/comandos no próprio site da Microsoft:
@@ -142,7 +152,7 @@ Botão "Desativar Telemetry":
 1. Abra o PowerShell como administrador e execute o seguinte comando:
 
 ```
-iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://bit.ly/WinDebloater')))
+iex ([System.Text.Encoding]::UTF8.GetString((New-Object System.Net.WebClient).DownloadData('https://raw.githubusercontent.com/carlositaloo/Windows-Debloater/refs/heads/main/WindowsDebloater.ps1')))
 ```
 O aplicativo abrirá, exibindo uma interface com botões para iniciar a limpeza.
 
