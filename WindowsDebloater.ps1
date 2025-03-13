@@ -278,13 +278,13 @@ $Button4.Add_Click( {
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
 
         Write-Host "Instalando WinRAR" -ForegroundColor Cyan
-        winget install --id WinRAR.WinRAR --force --uninstall-previous -h
+        winget install WinRAR --uninstall-previous -h
 
         
         powercfg -SetActive SCHEME_MIN
 
         powercfg -change -standby-timeout-ac 60
-        powercfg -change -standby-timeout-dc 30
+        powercfg -change -standby-timeout-dc 15
         powercfg -change -monitor-timeout-ac 15
         powercfg -change -monitor-timeout-dc 10
         powercfg -change -disk-timeout-ac 0
@@ -296,14 +296,18 @@ $Button4.Add_Click( {
         Write-Host "Ativar histórico de area de transferência" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Clipboard" -Name "EnableClipboardHistory" -Value 1 -Type DWord
 
-        Write-Host "Apenas o icone na caixa de pesquisa da barra de tarefas" -ForegroundColor Cyan
+        Write-Host "Ocultar a barra de pesquisa na barra de tarefas" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Value 0
 
         Write-Host "Ocultar a Visão de Tarefas" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowTaskViewButton" -Value 0
 
         Write-Host "Ativar Finalizar tarefa na barra de tarefas" -ForegroundColor Cyan
-        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" -Name "TaskbarEndTask" -Value 1
+        New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" -Force | Out-Null
+        New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings" -Name "TaskbarEndTask" -Value 1 -PropertyType DWORD -Force
+
+        Write-Host "Obter atualizações assim que disponiveis" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" -Name "IsContinuousInnovationOptedIn" -Value 1
 
         Write-Host "Alterar o layout do Menu Iniciar para priorizar aplicativos fixados" -ForegroundColor Cyan
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name Start_Layout -Value 1
@@ -344,6 +348,9 @@ $Button4.Add_Click( {
             }
         }   
         
+        Write-Host "Aumenta o limite de tamanho para endereços de diretórios" -ForegroundColor Cyan
+        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -Type DWORD
+
         Write-Host "Ativando o modo escuro!" -ForegroundColor Cyan
         New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0 -PropertyType DWORD -Force
         New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name SystemUsesLightTheme -Value 0 -PropertyType DWORD -Force
@@ -351,6 +358,10 @@ $Button4.Add_Click( {
         
         Write-Host "Pronto Modo de Desempenho." -ForegroundColor Yellow
         Write-Host "`n`n=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#`n`n"
+
+        Stop-Process -Name explorer -Force
+        Start-Process explorer
+
     }
 )
 
