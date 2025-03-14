@@ -278,7 +278,7 @@ $Button4.Add_Click( {
     Write-Host "`n                        Ativar modo de Desempenho`n`n"
 
         Write-Host "Instalando WinRAR" -ForegroundColor Cyan
-        winget install WinRAR --uninstall-previous -h
+        winget install WinRAR --silent --accept-source-agreements
 
         
         powercfg -SetActive SCHEME_MIN
